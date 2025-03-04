@@ -1,8 +1,9 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { Button } from "./Button";
 import { Iinput, TextArea } from "./input";
+import { Iperson } from "../lib/data";
 
 interface contactForm {
   name: string;
@@ -18,7 +19,9 @@ const defaultVlaue = {
   message: "",
 };
 
-export const ContactForm = () => {
+
+type Tprops = {activePerson: Iperson[]}
+export const ContactForm:FC<Tprops> = ({}) => {
   const [data, setData] = useState<contactForm>(defaultVlaue);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

@@ -34,7 +34,7 @@ const ContactUs = () => {
         ))}
       </div>
       <div className="py-8">
-        <ContactForm />
+        <ContactForm activePerson={activePerson} />
       </div>
     </div>
   );
