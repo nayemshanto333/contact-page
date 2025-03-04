@@ -18,7 +18,14 @@ export interface Iperson {
     {
       id: 3,
       name: "Nayem",
-      email: "johndoe@example.com",
+      email: "nayemshantobd@gmail.com",
     },
   ];
   
+
+  export interface IContact {
+    name: string;
+    email: string;
+    phone: number;
+    message: string;
+  }

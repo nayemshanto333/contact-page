@@ -3,14 +3,9 @@
 import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { Button } from "./Button";
 import { Iinput, TextArea } from "./input";
-import { Iperson } from "../lib/data";
-
-interface contactForm {
-  name: string;
-  email: string;
-  phone: number;
-  message: string;
-}
+import { IContact, Iperson } from "../lib/data";
+import { sendMessage } from "../server";
+import { toast } from "sonner";
 
 const defaultVlaue = {
   name: "",
@@ -19,10 +14,9 @@ const defaultVlaue = {
   message: "",
 };
 
-
-type Tprops = {activePerson: Iperson[]}
-export const ContactForm:FC<Tprops> = ({}) => {
-  const [data, setData] = useState<contactForm>(defaultVlaue);
+type Tprops = { activePerson: Iperson[] };
+export const ContactForm: FC<Tprops> = ({ activePerson }) => {
+  const [data, setData] = useState<IContact>(defaultVlaue);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -36,12 +30,17 @@ export const ContactForm:FC<Tprops> = ({}) => {
   };
   console.log(data);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const persons = activePerson.map((person) => person.email);
+    toast.promise(sendMessage(persons, data), {
+      loading: "Loading...",
+      success: "Message sent successfully",
+      error: "Something went wrong",
+    });
     
-    console.log(data)
-    
-  }
+  };
 
   return (
     <form className="space-y-3.5" onSubmit={handleSubmit}>
