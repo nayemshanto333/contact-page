@@ -1,4 +1,4 @@
-interface Iperson {
+export interface Iperson {
     id: number;
     name: string;
     email: string;

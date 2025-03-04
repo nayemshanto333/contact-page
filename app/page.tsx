@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import {  persons } from "./lib/data";
-import { ContactForm, PersonButton } from "./components";
+
+import ContactUs from "./components/contact-us";
 
 const HomePage = () => {
   return (
@@ -24,19 +24,10 @@ const HomePage = () => {
 
         <div className="flex justify-between items-center p-5 w-full h-full">
           {/* left side */}
-          <div className="w-full max-w-[506px] mx-auto p-10">
-            <h2 className="text-3xl font-semibold leading-[36.31px] tracking-[-2%] ">
-              Let&apos; contact Our Team
-            </h2>
-            <div className="py-3 space-x-2.5">
-              {persons.map((item) => (
-                <PersonButton key={item.id}>{item.name}</PersonButton>
-              ))}
-            </div>
-            <div className="py-8">
-              <ContactForm />
-            </div>
+          <div>
+            <ContactUs/>
           </div>
+          
           {/* RIght side */}
           <div className="w-full max-w-[516px] relative">
             <Image
